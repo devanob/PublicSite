@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load render_bundle from webpack_loader %}
+{% load get_files from webpack_loader %}
+{% block body_class %}padded-top{% endblock %}
+{% load static %}
+{% load sekizai_tags %}
+{% load media_tag %}
+
+
+
+
+{% block content %}
+
+{% get_files './about/compiled_about' 'js' as about_js %}
+{% for js_file in about_js %}
+  {% add_js '' js_file.url  %}
+{% endfor %}
+
+{% get_files './about/compiled_about' 'css' as about_css %}
+{% for css_file in about_css %}
+{% add_css '' css_file.url  %}
+{% endfor %}
+
+    <section class = "sectionPage" id = "aboutPage"  >
+      <div class="container-fluid" >
+
+          <!-- Page Heading/Breadcrumbs -->
+          <h1 class="text-center text-uppercase ">{{self.title}}</h1>
+          <hr class="star-dark mb-5">
+        
+          <!-- Intro Content -->
+          {% for block in page.body %}
+              <section> {%  include_block block with block_id=block.id %}</section>
+          {% endfor %}
+      </div>
+
+    </section>
+{% endblock %}
+
+
+{% block cdn_css%}
+{{ block.super }}
+{% endblock %}
+
+
+

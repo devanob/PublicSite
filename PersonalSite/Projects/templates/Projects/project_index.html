@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% load static %}
+{% load sekizai_tags %}
+{% comment %} static CSS {% endcomment %}
+{% block extra_css %}
+  {% addtoblock "css" %}
+    <link href="{% static 'About/css/about.css' %}" rel="stylesheet">
+  {% endaddtoblock %}
+{% endblock %}
+
+{% comment %} CDN BLOCK CSS  {% endcomment %}
+{% block cdn_css%}
+{{ block.super }}
+{% endblock %}
+{% comment %} 
+CDN JS {% endcomment %}
+{% block extra_js %}
+  {% addtoblock "js" %}
+<script src="{% static 'About/js/about.js' %}"></script>
+<script>
+        00.init();
+</script>
+  {% endaddtoblock %}
+{% endblock %}
+
+
+{% block cdn_js%}
+  {{ block.super }}
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+{% endblock %}
+
+{% block header %}
+    {% comment %} {% include "home/carousel.html" %} {% endcomment %}
+    
+{% endblock %}
+
+{% block content %}
+  <div class="banner-image">
+    {% image page.banner_image original %}
+  </div>
+    <section class = "sectionPage" id = "projectPage"  >
+    <div class="container-fluid" >
+
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="text-center text-uppercase ">{{page.title}}</h1>
+        <hr class="star-dark mb-5">
+      
+        
+</section>
+{% endblock %}

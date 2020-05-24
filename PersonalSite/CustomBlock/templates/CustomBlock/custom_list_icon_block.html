@@ -1,0 +1,6 @@
+{% load wagtailcore_tags %}
+<ul >
+    {% for icon in self%}
+        <li>{% include_block icon %}</li>
+    {% endfor %}
+<ul>

@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+
+<div class="{{self.class_name}}" >
+    <div class="left slider-control"></div>
+    <ul >
+        {% for icon in self.icon_list%}
+            <li>{% include_block icon %}</li>
+        {% endfor %}
+    </ul>
+    <div class="right slider-control"> </div>
+</div> 

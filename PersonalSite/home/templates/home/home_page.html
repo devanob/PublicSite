@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load menu_tags %}
+{% load media_tag %}
+{% load static %}
+{% load sekizai_tags %}
+{% comment %} static CSS {% endcomment %}
+{% block body_class %}home-page{% endblock %}
+
+{% block header %}
+    {% include "home/carousel.html" %}
+{% endblock %}
+
+{% block content %}
+  {% for section  in sections  %}
+        {%  if section.section_template_name  %}
+          <section class = "sectionPage" id = "{{section.getSectionLink}}"  >
+            {% include section.section_template_name  with page=section%}
+          </section>
+        {% endif %}
+  {% endfor %}
+
+{% endblock %}
+
+
+{% comment %} Add Menue {% endcomment %}
+
+{% block navBarlinks %}
+{% flat_menu 'home-page-flat-menu' template='menu/home_menu_template.html'  %}
+{% endblock %} %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

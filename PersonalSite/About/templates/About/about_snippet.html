@@ -1,0 +1,37 @@
+{% load wagtailcore_tags %}
+{% load static %}
+{% load media_tag %}
+{% load get_files from webpack_loader %}
+
+{% get_files './about/compiled_about_snippet' 'js' as about_js %}
+{% for js_file in about_js %}
+  {% add_js '' js_file.url  %}
+{% endfor %}
+
+{% get_files './about/compiled_about_snippet' 'css' as about_css %}
+{% for css_file in about_css %}
+{% add_css '' css_file.url  %}
+{% endfor %}
+
+
+    <div class="container-fluid" >
+      
+
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="text-center text-uppercase ">{{page.title}}</h1>
+        <hr class="star-dark mb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              One of three columns
+            </div>
+            <div class="col-sm">
+              One of three columns
+            </div>
+            
+        </div>
+        <!-- Intro Content -->
+        {% for block in page.body %}
+            <section>{%  include_block block with block_id=block.id %}</section>
+        {% endfor %}
+    </div>

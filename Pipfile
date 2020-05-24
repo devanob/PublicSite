@@ -1,0 +1,40 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+
+[packages]
+django = "*"
+django-extensions = "*"
+celery = "*"
+django-celery-beat = "*"
+pillow = "*"
+bcrypt = "*"
+djangorestframework = "*"
+gunicorn = "*"
+django-crispy-forms = "*"
+django-compressor = "*"
+beautifulsoup4 = "*"
+lxml = "*"
+html5lib = "*"
+slimit = "*"
+brotli = "*"
+autopep8 = "*"
+wagtail = "*"
+channels = "*"
+django-sekizai = "*"
+wand = "*"
+wagtailmenus = "*"
+django-model-utils = "*"
+psycopg2-binary = "*"
+psycopg2 = "*"
+wagtailcolumnblocks = "*"
+django-webpack-loader = "*"
+six = "*"
+coderedcms = "*"
+
+[requires]
+python_version = "3.8"

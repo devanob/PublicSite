@@ -1,0 +1,11 @@
+{% load media_tag %}
+{% load compress %}
+
+{% compress css %}
+{% print_media "css" %}
+{% endcompress %}
+
+
+{% compress js %}
+{% print_media "js" %}
+{% endcompress %}
