@@ -28,15 +28,14 @@ class GlobalMediaMiddleware(MiddlewareMixin):
         except KeyError:
             pass
     def process_template_response(self, request, response):
-        # print(response.context_data)
-        # print(response.is_rendered)
+        response.render()
+        current_thread_media_container = self.get_current_media_container()
+        render_files = render(request, 'MediaManager/media_manager.html', {}, '')
+        response.content  = response.content + render_files.content
         return response
 
     def process_response(self, request, response):
         #response.content = response.rendered_content
-        current_thread_media_container = self.get_current_media_container()
-        render_files = render(request, 'MediaManager/media_manager.html', {}, '')
-        response.content  = response.content + render_files.content
         try:
             del self.thread_media_map[threading.get_ident()]
         except KeyError:

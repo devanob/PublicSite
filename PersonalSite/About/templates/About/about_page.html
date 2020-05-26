@@ -24,10 +24,9 @@
 
     <section class = "sectionPage" id = "aboutPage"  >
       <div class="container-fluid" >
-
           <!-- Page Heading/Breadcrumbs -->
           <h1 class="text-center text-uppercase ">{{self.title}}</h1>
-          <hr class="star-dark mb-5">
+          <div class="star-dark mb-5"> <div class='page-icon'> {{self.page_icon}} </div> </div>
         
           <!-- Intro Content -->
           {% for block in page.body %}

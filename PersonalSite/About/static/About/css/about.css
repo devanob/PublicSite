@@ -30,12 +30,12 @@
     color: white;
 }
 
-#aboutPage hr.star-dark {
+#aboutPage .star-dark {
     border-color: white;
 }
 
 
-#aboutPage hr.star-dark:after {
+#aboutPage .star-dark:after {
     color: white;
     background-color: rgb(53, 185, 147);
     font-size: 3em;

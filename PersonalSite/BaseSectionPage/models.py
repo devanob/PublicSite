@@ -5,7 +5,6 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.images.edit_handlers import  ImageChooserPanel
 
 
-
 # Create your models here.
 class BaseSection(Page):
     """
