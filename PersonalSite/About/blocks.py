@@ -1,8 +1,10 @@
 from CustomBlock import blocks as custom_blocks
 from wagtail.core import blocks
-# from wagtailcolumnblocks.blocks import ColumnsBlock
+from wagtailcolumnblocks.blocks import ColumnsBlock
 #from wagtail_blocks.blocks import HeaderBlock,ImageSliderBlock
 from wagtail_svgmap.blocks import ImageMapBlock
+
+
 class AboutContentBlocks(blocks.StreamBlock):
     """
     Allowed Blocks 
@@ -16,10 +18,52 @@ class AboutContentBlocks(blocks.StreamBlock):
 
 
 
-class AboutGenericColumnBlocks(blocks.StreamBlock):
+class AboutColumnBlocksTwoColumn(blocks.StreamBlock):
     """
     All the root level blocks you can use
     """
-    about_content = AboutContentBlocks()
-    
-    
+    Two_Column = ColumnsBlock(
+        # Blocks you want to allow within each column
+        AboutContentBlocks(),
+        # Two columns in admin, first twice as wide as the second
+        ratios=(1, 1),
+        # Used for grouping related fields in the streamfield field picker
+        group="Columns Two",
+        # 12 column frontend grid (this is the default, so can be omitted)
+        grid_width=12,
+        # Override the frontend template
+        # template='About/block_templates/image_block.html',
+    )
+class AboutColumnBlocksThreeColumn(blocks.StreamBlock):
+    """
+    All the root level blocks you can use
+    """
+    Three_Column_ = ColumnsBlock(
+        # Blocks you want to allow within each column
+        AboutContentBlocks(),
+        # Two columns in admin, first twice as wide as the second
+        ratios=(1,1,1),
+        # Used for grouping related fields in the streamfield field picker
+        group="Columns Three",
+        # 12 column frontend grid (this is the default, so can be omitted)
+        grid_width=12,
+        # Override the frontend template
+        # template='About/block_templates/image_block.html',
+    )
+
+class AboutColumnBlocksOneColumn(blocks.StreamBlock):
+    """
+    All the root level blocks you can use
+    """
+    One_Column = ColumnsBlock(
+        # Blocks you want to allow within each column
+        AboutContentBlocks(),
+        # Two columns in admin, first twice as wide as the second
+        ratios=(1,),
+        # Used for grouping related fields in the streamfield field picker
+        group="Columns One",
+        # 12 column frontend grid (this is the default, so can be omitted)
+        grid_width=12,
+        # Override the frontend template
+        # template='About/block_templates/image_block.html',
+    )

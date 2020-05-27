@@ -1,6 +1,6 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-#from wagtailcolumnblocks.blocks import ColumnsBlock
+from wagtailcolumnblocks.blocks import ColumnsBlock
 from wagtail_svgmap.blocks import ImageMapBlock
 
 class CustomImageBlock(blocks.StructBlock):

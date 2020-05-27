@@ -40,10 +40,10 @@ class Project(index.Indexed,ClusterableModel):
             )
     #search Fields
     panels = [
+        FieldPanel('project_name'),
         ImageChooserPanel('image'),
         FieldPanel('tags'),
-         FieldPanel('categories',widget=forms.CheckboxSelectMultiple),
-        FieldPanel('project_name'),
+        FieldPanel('categories',widget=forms.CheckboxSelectMultiple),
         FieldPanel('project_link'),
         FieldPanel('description'),
       

@@ -30,6 +30,7 @@ class GlobalMediaMiddleware(MiddlewareMixin):
     def process_template_response(self, request, response):
         response.render()
         current_thread_media_container = self.get_current_media_container()
+        print( current_thread_media_container.media)
         render_files = render(request, 'MediaManager/media_manager.html', {}, '')
         response.content  = response.content + render_files.content
         return response

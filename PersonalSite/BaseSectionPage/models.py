@@ -3,15 +3,21 @@ from wagtail.core.models import Page
 from django_extensions.db.fields import AutoSlugField
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.images.edit_handlers import  ImageChooserPanel
-
-
+from wagtail_svgmap.blocks import ImageMapBlock
+from wagtail.core.blocks import StreamBlock
+from wagtail.core.fields import StreamField
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 # Create your models here.
 class BaseSection(Page):
     """
     BaseSection abstract base class. All sections should inherit
     from this class.This Will Also Serve As A Regular Page As Well. 
     """
-
+    page_icon = StreamField(
+    StreamBlock([
+        ('icon_page', ImageMapBlock())
+    ], min_num=0, max_num=1))
     parent_page_types = [] #empty by default 
     subpage_types = []
     section_template_name = "" #default empty 
@@ -21,10 +27,17 @@ class BaseSection(Page):
     promote_panels = [
         MultiFieldPanel(Page.promote_panels, "Page Configuration Base-Section"),
     ]
-    content_panels = Page.content_panels + [
-       FieldPanel('section_slug'),
-       ImageChooserPanel('banner_image'),
+    page_panel_options= [
+        StreamFieldPanel('page_icon'),
+        FieldPanel('section_slug'),
+        ImageChooserPanel('banner_image'),
     ]
+    content_panels = Page.content_panels + [
+       
+       
+    ]
+    para_list = []
+    
 
     class Meta:
         abstract = True

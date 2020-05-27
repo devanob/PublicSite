@@ -15,26 +15,22 @@ from CustomBlock import blocks as custom_blocks
 from . import  blocks as AboutBlocks
 from wagtail_svgmap.blocks import ImageMapBlock
 from wagtail.core.blocks import StreamBlock
-
+from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 class AboutPageIndex(Page):
-    page_icon = StreamField(
-    StreamBlock([
-        ('icon_page', ImageMapBlock())
-    ], min_num=0, max_num=1))
     parent_page_types = ['home.HomePage']
     template = "About/about_page.html"
     section_template_name = "About/about_snippet.html" #default empty 
     body = StreamField([
-        ('column_about_block', AboutBlocks.AboutGenericColumnBlocks(required=False)),
+        ('about_two_column', AboutBlocks.AboutColumnBlocksTwoColumn(required=False)),
+        ('about_three_column', AboutBlocks.AboutColumnBlocksThreeColumn(required=False)),
+        ('about_one_column', AboutBlocks.AboutColumnBlocksOneColumn(required=False)),
     
     ],blank=True, null=True)
-
+    #body content
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
-         StreamFieldPanel('page_icon'),
-       
-        
     ]
+   
 
 
     
