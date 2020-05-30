@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'wagtail_svgmap',
     'webpack_loader',
     'six',
+    'wagtailuiplus',
     'MediaManager',
 ]
 COMPRESS_ENABLED = False

@@ -8,6 +8,8 @@ from wagtail.core.blocks import StreamBlock
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.utils.decorators import cached_classmethod
+
 # Create your models here.
 class BaseSection(Page):
     """
@@ -37,6 +39,16 @@ class BaseSection(Page):
        
     ]
     para_list = []
+    
+    @cached_classmethod
+    def get_edit_handler(cls):
+        edit_handler = TabbedInterface([
+            ObjectList(cls.content_panels, heading='Content'),
+            ObjectList(cls.page_panel_options, heading='Page Options'),
+            ObjectList(cls.promote_panels, heading='Promote'),
+            ObjectList(cls.settings_panels, heading='Settings', classname="settings"),
+        ])
+        return edit_handler.bind_to(cls)
     
 
     class Meta:

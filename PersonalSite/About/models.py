@@ -28,7 +28,7 @@ class AboutPageIndex(Page):
     ],blank=True, null=True)
     #body content
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+        StreamFieldPanel('body',classname='wagtailuiplus__panel--collapsed'),
     ]
    
 

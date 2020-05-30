@@ -3,7 +3,7 @@ from wagtail.core import blocks
 from wagtailcolumnblocks.blocks import ColumnsBlock
 #from wagtail_blocks.blocks import HeaderBlock,ImageSliderBlock
 from wagtail_svgmap.blocks import ImageMapBlock
-
+#from wagtailclearstream import ClearBlock
 
 class AboutContentBlocks(blocks.StreamBlock):
     """
