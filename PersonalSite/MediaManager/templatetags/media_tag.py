@@ -2,7 +2,7 @@ from django.template import Library, Node
 from ..middleware.media_middleware import GlobalMediaMiddleware
 from django.forms.widgets import Media
 from functools import reduce
-
+import threading
 register = Library()
 
 MEDIA_KEY = '_media'
@@ -10,7 +10,10 @@ MEDIA_KEY = '_media'
 
 @register.simple_tag(takes_context=True)
 def add_media(context, *args):
+    print(threading.get_ident())
+    #print(args)
     medias = filter(lambda m: isinstance(m, Media), args)
+    print(medias)
     if not bool(medias):
         return ''
     media_container = GlobalMediaMiddleware.get_current_media_container()
@@ -21,6 +24,7 @@ def add_media(context, *args):
 
 @register.simple_tag(takes_context=True)
 def add_js(context,media, *js):
+    #print(js)
     add_media(context, Media(js=js))
     return ''
 
@@ -39,7 +43,7 @@ def print_media(context, media_type=None):
     media_container = GlobalMediaMiddleware.get_current_media_container()
     media = media_container.media
 
-    print(media)
+    #print(media)
     
     if media_type is None:
         return media

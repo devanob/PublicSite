@@ -117,8 +117,8 @@ WAGTAIL_SVGMAP_IE_COMPAT = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'personalweb_database',
-        'USER': 'devanobrown',
+        'NAME': 'personalsite',
+        'USER': 'personalsite',
         'PASSWORD': '11devano',
         'HOST': 'localhost',
         'PORT': '',
