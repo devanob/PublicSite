@@ -3,27 +3,27 @@
 {% load media_tag %}
 {% load get_files from webpack_loader %}
 
-{% get_files './about/compiled_about_snippet' 'js' as about_js %}
+{% get_files 'compiled_about_snippet' 'js' as about_js %}
 {% for js_file in about_js %}
   {% add_js '' js_file.url  %}
 {% endfor %}
 
-{% get_files './about/compiled_about_snippet' 'css' as about_css %}
+{% get_files 'compiled_about_snippet' 'css' as about_css %}
 {% for css_file in about_css %}
 {% add_css '' css_file.url  %}
 {% endfor %}
 
+ <!-- ======= About Section ======= -->
+ <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
 
-    <div class="container-fluid" >
-      
-        <!-- Page Heading/Breadcrumbs -->
-        <h1 class="text-center text-uppercase ">{{page.title}}</h1>
-        <div class="star-dark mb-5"> <div class='page-icon'> {{page.page_icon}} </div> </div>
-        <div class="container">
-         
-        <!-- Intro Content -->
+      <div class="section-title">
+        <h2>{{page.title}}</h2>
+        <div class='page-icon'> {{page.page_icon}} </div>
+      </div>
+       <!-- Intro Content -->
         {% for block in page.body %}
-            <section>{%  include_block block with block_id=block.id %}</section>
+            <section class="inner-section">{%  include_block block with block_id=block.id %}</section>
         {% endfor %}
     </div>
-    </div>
+  </section><!-- End About Section -->

@@ -30,14 +30,14 @@ let entries = glob.sync(`./*/static/*/*js/!(*${compiled_subtring}*).js`).reduce(
    * name. This is why we replace the file name, "index.js", with a string
    */
   const file_name = path.basename(relative_path);
-  let directorysplit = relative_path.split('/');
-  directorysplit = directorysplit.map(v => v.toLowerCase());
+  // let directorysplit = relative_path.split('/');
+  // directorysplit = directorysplit.map(v => v.toLowerCase());
 
-  directorysplit = directorysplit.filter(function (item, pos) {
-    return (directorysplit.indexOf(item) === pos) && !exception_list.includes(item);
-  })
-  directory_string = directorysplit.join('/');
-  let entry = directory_string.replace(`/${file_name}`, `/compiled_${file_name}`);
+  // directorysplit = directorysplit.filter(function (item, pos) {
+  //   return (directorysplit.indexOf(item) === pos) && !exception_list.includes(item);
+  // })
+  // directory_string = directorysplit.join('/');
+  let entry = file_name.replace(`${file_name}`, `compiled_${file_name}`);
   entry = entry.replace('.js', '');
   /**
    * Here we start building our object by placing the "entry" variable from
@@ -57,14 +57,14 @@ entries = glob.sync(`./*/static/*js/!(*${compiled_subtring}*).js`).reduce((acc, 
    */
 
   const file_name = path.basename(relative_path);
-  let directorysplit = relative_path.split('/');
-  directorysplit = directorysplit.map(v => v.toLowerCase());
+  // let directorysplit = relative_path.split('/');
+  // directorysplit = directorysplit.map(v => v.toLowerCase());
 
-  directorysplit = directorysplit.filter(function (item, pos) {
-    return (directorysplit.indexOf(item) === pos) && !exception_list.includes(item);
-  })
-  directory_string = directorysplit.join('/');
-  let entry = directory_string.replace(`/${file_name}`, `/compiled_${file_name}`);
+  // directorysplit = directorysplit.filter(function (item, pos) {
+  //   return (directorysplit.indexOf(item) === pos) && !exception_list.includes(item);
+  // })
+  // directory_string = directorysplit.join('/');
+  let entry = file_name.replace(`${file_name}`, `compiled_${file_name}`);
   entry = entry.replace('.js', '');
   /**
    * Here we start building our object by placing the "entry" variable from
@@ -94,6 +94,32 @@ let plugins = [
   }),
   new WebpackNotifierPlugin({title: 'Webpack'})
 ]
+const media_loader = {
+  test: /\.(gif|png|jpg|svg)(\?.*$|$)/,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        limit: 8192,
+        name: '[name].[ext]',
+        publicPath: 'images/'
+      },
+    },
+  ],
+}
+const fileLoaderRules = {
+  test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+  use: [
+    
+    {
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]',
+        outputPath: 'fonts/'
+      }
+    },
+  ]
+};
 
 const styleRule = {
   test: /\.(sa|sc|c)ss$/,
@@ -117,14 +143,15 @@ module.exports = {
   entry: entries,
   devtool: 'source-map',
   output: {
-    path: path.resolve('./assets/webpack_bundle/'),
+    path: path.resolve('./webpack_bundle/'),
     filename: (chunk_data) => {
       return "[name].js";
     }
   },
+
   module: {
     rules: [
-      jsRule, styleRule
+      jsRule, styleRule, fileLoaderRules,media_loader
     ],
   },
 

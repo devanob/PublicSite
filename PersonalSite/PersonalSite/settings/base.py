@@ -63,6 +63,10 @@ INSTALLED_APPS = [
     'six',
     'wagtailuiplus',
     'MediaManager',
+    'wagtailfontawesome',
+    'wagtail_blocks',
+    
+
 ]
 COMPRESS_ENABLED = False
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
@@ -170,7 +174,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
-    os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, 'webpack_bundle'),
 ]
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated

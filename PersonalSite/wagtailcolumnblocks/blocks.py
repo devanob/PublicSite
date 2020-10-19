@@ -59,7 +59,10 @@ class ColumnsBlock(blocks.StructBlock):
 
     def __init__(self, childblocks, ratios=(1, 1), **kwargs):
         super().__init__([
-            ('column_%i' % index, childblocks)
+            ('column_%i' % index, blocks.StructBlock([
+                ('column_instance', childblocks),
+                ('ratio_number', blocks.IntegerBlock(max_value=12, min_value=1, help_text='Ratios For Column')),
+            ], icon='user'))
             for index, _ in enumerate(ratios)
         ], **kwargs)
         self.ratios = ratios
@@ -74,8 +77,8 @@ class ColumnsBlock(blocks.StructBlock):
 
     def get_form_context(self, *args, **kwargs):
         context = super().get_form_context(*args, **kwargs)
-
         children = context['children']
+        print(children.values())
         context.update({
             'columns': zip(children.values(), self.ratios),
         })
@@ -105,3 +108,5 @@ class ColumnsBlock(blocks.StructBlock):
         return super().media + forms.Media(css={
             'all': ('wagtailcolumnblocks/columns.css',),
         })
+
+

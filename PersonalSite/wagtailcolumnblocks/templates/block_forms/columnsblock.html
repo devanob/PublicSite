@@ -1,4 +1,4 @@
-<div class="{{ classname }}">
+<div class="{{ classname }} outer-row">
     {% if help_text %}
         <div class="object-help help">{{ help_text }}</div>
     {% endif %}
@@ -10,6 +10,7 @@
                     <label{% if child.id_for_label %} for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}</label>
                 {% endif %}
                 {{ child.render_form }}
+
             </li>
         {% endfor %}
     </ul>

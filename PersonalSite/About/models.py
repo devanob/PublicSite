@@ -21,9 +21,7 @@ class AboutPageIndex(Page):
     template = "About/about_page.html"
     section_template_name = "About/about_snippet.html" #default empty 
     body = StreamField([
-        ('about_two_column', AboutBlocks.AboutColumnBlocksTwoColumn(required=False)),
-        ('about_three_column', AboutBlocks.AboutColumnBlocksThreeColumn(required=False)),
-        ('about_one_column', AboutBlocks.AboutColumnBlocksOneColumn(required=False)),
+        ('content', custom_blocks.ColumnBlocks(required=False)),
     
     ],blank=True, null=True)
     #body content

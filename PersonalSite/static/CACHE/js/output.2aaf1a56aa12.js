@@ -1,1 +1,0 @@
-require("../sass/about.scss");require("../css/about.css");document.addEventListener('DOMContentLoaded',()=>{});

@@ -3,8 +3,8 @@
 <div class="row">
   {% for column, width in columns %}
     {# width is relative to a column grid width, e.g. 12 #}
-    <div class="column col-md-{{ width }}">
-      {% include_block column %}
+    <div class="column col-md-{{ column.ratio_number }}">
+      {% include_block column.column_instance %}
     </div>
   {% endfor %}
 </div>

@@ -1,9 +1,38 @@
-/**
-* Template Name: MyResume - v2.1.0
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+//main style 
+
+import cssVars from 'css-vars-ponyfill';
+//import "../vendor/jquery/jquery.min.js";
+import "../vendor/jquery.easing/jquery.easing.min.js";
+import "../vendor/waypoints/jquery.waypoints.min";
+import "../vendor/counterup/counterup.min.js";
+import "../vendor/isotope-layout/isotope.pkgd.min.js";
+import "../vendor/typed.js/typed.min.js";
+//import js and css dependies for the site
+import "../vendor/bootstrap/css/bootstrap.min.css";
+import "../vendor/bootstrap/js/bootstrap.min.js";
+//
+import "../vendor/boxicons/css/boxicons.min.css";
+//
+import "../vendor/icofont/icofont.min.css";
+//
+import "../vendor/venobox/venobox.min.css";
+import "../vendor/venobox/venobox.min.js";
+//
+import "../vendor/owl.carousel/assets/owl.carousel.css";
+import "../vendor/owl.carousel/owl.carousel.min.js";
+//
+import "../vendor/aos/aos.css";
+import "../vendor/aos/aos.js"
+//main
+import "../sass/main.scss";
+
+
+
+
+cssVars({
+    // Options...
+  });
+
 !(function($) {
   "use strict";
 

@@ -38,7 +38,7 @@ li.sequence-member .columns-block.struct-block, * .columns-block.struct-block {
 }
 li.sequence-member .columns-block.struct-block > .fields, * .columns-block.struct-block > .fields {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   float: none;
   width: 100%;
 }
