@@ -6,8 +6,19 @@
 {% comment %} static CSS {% endcomment %}
 {% block body_class %}home-page{% endblock %}
 
-{% block header %}
-    {% include "home/carousel.html" %}
+{% block menu %}
+  {% flat_menu max_levels=1 handle='home-page-menu' template="home/menu/home_menu_template.html" %}
+{% endblock %}
+{% block pre_content %}
+ <!-- ======= Hero Section ======= -->
+ <section id="hero" class="d-flex flex-column justify-content-center">
+  <img src='static/hero-bg.jpg'>
+  <div class="container" data-aos="zoom-in" data-aos-delay="100">
+    <h1>Devano Brown</h1>
+    <p>I'm <span class="typed" data-typed-items="Software Developer,Professional"></span></p>
+    {% flat_menu max_levels=1 handle='social-link' template="home/social/social_home_template.html" %}
+  </div>
+</section><!-- End Hero -->
 {% endblock %}
 
 {% block content %}

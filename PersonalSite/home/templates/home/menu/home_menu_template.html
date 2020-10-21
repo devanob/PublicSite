@@ -1,0 +1,14 @@
+
+{% load menu_tags %}
+<nav class="nav-menu">
+    <ul>
+    {% for item in menu_items %}
+        <li><a href="{{ item.href }}"><i class="{{ item.handle }}"></i> <span>{{ item.text }}</span></a></li>
+    {% endfor %}
+    </ul>
+</nav><!-- .nav-menu -->
+
+<!-- <li class="active"><a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a></li>
+<li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
+<li><a href="#services"><i class="bx bx-server"></i> <span>Services</span></a></li>
+<li><a href="#contact"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->

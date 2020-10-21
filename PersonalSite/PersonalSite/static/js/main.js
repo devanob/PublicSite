@@ -6,7 +6,13 @@ import "../vendor/jquery.easing/jquery.easing.min.js";
 import "../vendor/waypoints/jquery.waypoints.min";
 import "../vendor/counterup/counterup.min.js";
 import "../vendor/isotope-layout/isotope.pkgd.min.js";
-import "../vendor/typed.js/typed.min.js";
+import "../vendor/typed.js/typed.js";
+var $ = require('jquery');
+window.jQuery = $;
+window.$ = $;
+
+import Typed from 'typed.js';
+
 //import js and css dependies for the site
 import "../vendor/bootstrap/css/bootstrap.min.css";
 import "../vendor/bootstrap/js/bootstrap.min.js";
@@ -21,8 +27,7 @@ import "../vendor/venobox/venobox.min.js";
 import "../vendor/owl.carousel/assets/owl.carousel.css";
 import "../vendor/owl.carousel/owl.carousel.min.js";
 //
-import "../vendor/aos/aos.css";
-import "../vendor/aos/aos.js"
+var AOS = require('aos');
 //main
 import "../sass/main.scss";
 
@@ -33,7 +38,9 @@ cssVars({
     // Options...
   });
 
-!(function($) {
+
+function main() {
+  //use strict
   "use strict";
 
   // Preloader
@@ -174,47 +181,55 @@ cssVars({
       once: true
     });
   }
+  aos_init();
+
 
   // Porfolio isotope and filter
-  $(window).on('load', function() {
-    var portfolioIsotope = $('.portfolio-container').isotope({
-      itemSelector: '.portfolio-item'
-    });
+  // $(window).on('load', function() {
+  //   var portfolioIsotope = $('.portfolio-container').isotope({
+  //     itemSelector: '.portfolio-item'
+  //   });
 
-    $('#portfolio-flters li').on('click', function() {
-      $("#portfolio-flters li").removeClass('filter-active');
-      $(this).addClass('filter-active');
+    // $('#portfolio-flters li').on('click', function() {
+    //   $("#portfolio-flters li").removeClass('filter-active');
+    //   $(this).addClass('filter-active');
 
-      portfolioIsotope.isotope({
-        filter: $(this).data('filter')
-      });
-      aos_init();
-    });
+    //   portfolioIsotope.isotope({
+    //     filter: $(this).data('filter')
+    //   });
+    //   aos_init();
+    // });
 
     // Initiate venobox (lightbox feature used in portofilo)
     $('.venobox').venobox({
       'share': false
     });
+    //});
 
     // Initiate aos_init() function
-    aos_init();
+    
 
-  });
+    // Testimonials carousel (uses the Owl Carousel library)
+    $(".testimonials-carousel").owlCarousel({
+      autoplay: true,
+      dots: true,
+      loop: true,
+      items: 1
+    });
 
-  // Testimonials carousel (uses the Owl Carousel library)
-  $(".testimonials-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    items: 1
-  });
+    // Portfolio details carousel
+    $(".portfolio-details-carousel").owlCarousel({
+      autoplay: true,
+      dots: true,
+      loop: true,
+      items: 1
+    });
 
-  // Portfolio details carousel
-  $(".portfolio-details-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    items: 1
-  });
+}
 
-})(jQuery);
+
+if (document.readyState !== 'loading') {
+  main();
+} else {
+  main();
+}

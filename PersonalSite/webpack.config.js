@@ -93,6 +93,12 @@ let plugins = [
     filename: '[name].bundle.css'
   }),
   new WebpackNotifierPlugin({title: 'Webpack'})
+  ,
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    'window.jQuery': 'jquery'
+  }),
 ]
 const media_loader = {
   test: /\.(gif|png|jpg|svg)(\?.*$|$)/,

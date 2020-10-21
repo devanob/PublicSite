@@ -216,9 +216,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
   !*** ./PersonalSite/static/backup/js/jqBootstrapValidation.js ***!
   \****************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-/* jqBootstrapValidation
+/* WEBPACK VAR INJECTION */(function(jQuery) {/* jqBootstrapValidation
  * A plugin for automating validation on Twitter Bootstrap formatted forms.
  *
  * v1.3.6
@@ -1131,6 +1131,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 })( jQuery );
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 
@@ -1336,9 +1337,9 @@ if (document.readyState !== 'loading') {
   !*** ./PersonalSite/static/backup/js/scrolling-nav.js ***!
   \********************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-(function($) {
+/* WEBPACK VAR INJECTION */(function(jQuery) {(function($) {
   "use strict"; // Start of use strict
 
   // Smooth scrolling using jQuery easing
@@ -1368,6 +1369,7 @@ if (document.readyState !== 'loading') {
 
 })(jQuery); // End of use strict
 
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 

@@ -1,8 +1,0 @@
-{% for item in menu_items %}
-    <li class="{{ item.active_class }} nav-item dropdown">
-        <a href="{{ item.href }}" class="nav-link btn font-weight-bold  js-scroll-trigger"> {{ item.text }}</a>
-        {% if item.has_children_in_menu %}
-            
-        {% endif %}
-    </li>
-{% endfor %}
