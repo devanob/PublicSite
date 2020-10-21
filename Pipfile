@@ -35,6 +35,7 @@ django-webpack-loader = "*"
 six = "*"
 wagtailuiplus = "*"
 wagtailclearstream = "*"
+wagtail-blocks = "*"
 
 [requires]
 python_version = "3.8"

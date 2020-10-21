@@ -16,13 +16,14 @@ from taggit.models import TaggedItemBase, Tag as TaggitTag
 from modelcluster.models import ClusterableModel
 from modelcluster.tags import ClusterTaggableManager
 from wagtail.images.edit_handlers import ImageChooserPanel
-
-
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.snippets.models import register_snippet
 @register_snippet
 class Project(index.Indexed,ClusterableModel):
     
     # Fields
     id = models.AutoField(primary_key=True)
+    slug = AutoSlugField(populate_from='project_name', blank=True,editable=True)
     project_name = models.CharField(max_length=255,verbose_name='name')
     tags = ClusterTaggableManager(through='Projects.ProjectTag', blank=True)
     created = models.DateTimeField(verbose_name='Date Created')
@@ -41,11 +42,13 @@ class Project(index.Indexed,ClusterableModel):
     #search Fields
     panels = [
         FieldPanel('project_name'),
-        ImageChooserPanel('image'),
-        FieldPanel('tags'),
-        FieldPanel('categories',widget=forms.CheckboxSelectMultiple),
-        FieldPanel('project_link'),
         FieldPanel('description'),
+        ImageChooserPanel('image'),
+        SnippetChooserPanel('categories'),
+        FieldPanel('tags'),
+        FieldPanel('project_link'),
+        FieldPanel('slug'),
+        
       
     ]
 
@@ -67,7 +70,7 @@ class ProjectPageIndex(Page):
             return None
         serach_results  = search_back_end.search(searchText, self.getModel().objects.all())
         return serach_results
-from wagtail.snippets.models import register_snippet
+
 
 @register_snippet
 class ProjectCategory(models.Model):

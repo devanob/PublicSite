@@ -80,7 +80,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 
-    'wagtail.core.middleware.SiteMiddleware',
+   
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'MediaManager.middleware.media_middleware.GlobalMediaMiddleware'
 ]

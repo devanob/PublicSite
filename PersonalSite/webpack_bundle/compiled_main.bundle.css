@@ -36252,7 +36252,7 @@ html {
 
 #main {
   padding-left: 10px;
-  padding-right: 10p;
+  padding-right: 10px;
 }
 
 body {
@@ -36268,7 +36268,7 @@ body {
 :root {
   --main-color: coral;
   --main-color-hover: rgba(255, 127, 80, 0.753);
-  font-size: 20px;
+  font-size: 18px;
 }
 
 a {
