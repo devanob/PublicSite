@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'search',
     'sekizai',
     'CustomBlock',
+    'CustomPage',
     "compressor",
     'wagtailcolumnblocks',
     #'wagtail_blocks',

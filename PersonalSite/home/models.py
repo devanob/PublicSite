@@ -4,7 +4,8 @@ from wagtail.core.models import Page
 from BaseSectionPage.models import BaseSection 
 from About.models import AboutPageIndex
 class HomePage(Page):
-   section_list = [AboutPageIndex]
+   #section_list = [AboutPageIndex]
+   
    def get_context(self, request):
       context = super(HomePage, self).get_context(request)
       context['sections']= self.getSections()
