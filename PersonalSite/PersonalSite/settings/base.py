@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Application definition
 AUTH_USER_MODEL = "Users.User"
+##
 INSTALLED_APPS = [
      'home',
      'About',
@@ -67,13 +68,11 @@ INSTALLED_APPS = [
     'MediaManager',
     'wagtailfontawesome',
     'wagtail_blocks',
-    'django_celery_results'
-    
-
 ]
+#
 COMPRESS_ENABLED = False
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',  'compressor.filters.cssmin.CSSMinFilter']
-
+#
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,8 +81,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
-   
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'MediaManager.middleware.media_middleware.GlobalMediaMiddleware'
 ]
@@ -215,4 +212,8 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
 ##CELERY_RESULT_BACKEND = 'django-db'
-##DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000000
+
+##User Configuration
+WAGTAIL_USER_EDIT_FORM = 'Users.forms.CustomUserEditForm'
+WAGTAIL_USER_CREATION_FORM = 'Users.forms.CustomUserCreationForm'
+WAGTAIL_USER_CUSTOM_FIELDS = ['git_hub_account']

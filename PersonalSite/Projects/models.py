@@ -91,6 +91,7 @@ class ProjectCategory(models.Model):
 
 
 
+@register_snippet
 class ProjectTag(TaggedItemBase):
     content_object = ParentalKey(Project, related_name='project_tags')
     verbose_name = "Project Tag"
@@ -98,9 +99,3 @@ class ProjectTag(TaggedItemBase):
         verbose_name_plural = "Project Tags"
         verbose_name = "Project Tag"
 
-@register_snippet
-class Tag(TaggitTag):
-    class Meta:
-        proxy = True
-        verbose_name_plural = "Project Tags"
-        verbose_name = "Project Tag"
