@@ -36,6 +36,9 @@ six = "*"
 wagtailuiplus = "*"
 wagtailclearstream = "*"
 wagtail-blocks = "*"
+supervisor = "*"
+django-celery-results = "*"
+flower = "*"
 
 [requires]
 python_version = "3.8"

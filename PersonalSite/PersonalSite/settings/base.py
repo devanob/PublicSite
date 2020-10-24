@@ -27,6 +27,7 @@ INSTALLED_APPS = [
      'home',
      'About',
     'search',
+    'django_celery_beat',
     'sekizai',
     'CustomBlock',
     'CustomPage',
@@ -66,6 +67,7 @@ INSTALLED_APPS = [
     'MediaManager',
     'wagtailfontawesome',
     'wagtail_blocks',
+    'django_celery_results'
     
 
 ]
@@ -207,4 +209,10 @@ BASE_URL = 'http://example.com'
 # }
 
 
-
+# Celery Configuration Options
+CELERY_TIMEZONE = "Canada/Atlantic"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
+##CELERY_RESULT_BACKEND = 'django-db'
+##DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000000
