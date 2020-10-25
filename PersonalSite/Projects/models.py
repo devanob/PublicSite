@@ -18,6 +18,7 @@ from modelcluster.tags import ClusterTaggableManager
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
+from wagtail_svgmap.models import ImageMap
 @register_snippet
 class Project(index.Indexed,ClusterableModel):
     
@@ -30,6 +31,7 @@ class Project(index.Indexed,ClusterableModel):
     last_updated = models.DateTimeField(auto_now=True,verbose_name='Date Updated')
     description = models.TextField(max_length=1000)
     project_link = models.CharField(max_length=100)
+    show_case= models.BooleanField(blank=False,default=True)
     projectHandlier = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name="projectUserHandlier",)
     image = models.ForeignKey('wagtailimages.Image', on_delete=models.SET_NULL,null=True, related_name='+', blank=True)
     categories = ParentalManyToManyField('Projects.ProjectCategory',related_name='related_categories', blank=True)
@@ -43,6 +45,7 @@ class Project(index.Indexed,ClusterableModel):
     panels = [
         FieldPanel('project_name'),
         FieldPanel('description'),
+        FieldPanel('show_case'),
         ImageChooserPanel('image'),
         FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
         FieldPanel("projectHandlier"),
@@ -77,9 +80,10 @@ class ProjectPageIndex(Page):
 class ProjectCategory(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', blank=True)
-    
+    icon = models.ForeignKey(ImageMap, on_delete=models.SET_NULL,null=True, related_name='+', blank=True)
     panels = [
         FieldPanel('name'),
+        SnippetChooserPanel('icon')
     ]
 
     def __str__(self):
@@ -98,4 +102,5 @@ class ProjectTag(TaggedItemBase):
     class Meta:
         verbose_name_plural = "Project Tags"
         verbose_name = "Project Tag"
+    
 

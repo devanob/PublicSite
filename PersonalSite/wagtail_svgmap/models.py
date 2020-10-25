@@ -13,9 +13,10 @@ except ImportError:
 from wagtail_svgmap import log
 from wagtail_svgmap.mixins import LinkFields
 from wagtail_svgmap.svg import find_ids, fix_dimensions, get_dimensions, Link, serialize_svg, wrap_elements_in_links
-
+from wagtail.snippets.models import register_snippet
 
 @python_2_unicode_compatible
+@register_snippet
 class ImageMap(models.Model):
     """
     The main image map model. Caches the element IDs and prerendered linked SVG.

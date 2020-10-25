@@ -1,7 +1,7 @@
 
 from django.utils.timezone import make_aware
 from django.conf import settings
-from ProjectUser.models import ProjectUser
+from Users.models import User
 import json
 from celery import shared_task
 from urllib.request import Request, urlopen
@@ -13,15 +13,12 @@ from celery.utils.log import get_task_logger
 
 
 
-@shared_task
-def getUsers(userModel):
-    try:
-        userProject = ProjectUser.objects.get(username=userModel)
-        gitUser = userProject.gitUser
-    except Exception:
-        log.info(traceback.print_exc())
-        log.info("User Couldnt Not Be Found:{}\n".format(userModel))
-        raise Exception("User Couldnt Not Be Found:{}\n".format(userModel))
+
+
+
+
+def getUserRepos(userModel):
+    gitUser = userModel.git_hub_account
     # Do nothing User Not Found Raise Error
     urlRestApiGit = "https://api.github.com/users/{}/repos".format(gitUser)
     try:
@@ -29,7 +26,7 @@ def getUsers(userModel):
                               headers={"User-Agent": "Mozilla/5.0"})
         contents = urlopen(url_request).read()
     except:
-        log.info(
+        print(
             "Git User Couldnt Not Be Found Or Connection Erorr:{}\n".format(gitUser))
         raise Exception(
             "Git User Couldnt Not Be Found Or Connection Erorr:{}\n".format(gitUser))
@@ -53,29 +50,51 @@ def getUsers(userModel):
             repos["updated_at"], "%Y-%m-%dT%H:%M:%SZ"))
         #repos["updated_at"] = repos["updated_at"].strftime('%Y-%m-%d %H:%M:%S+00:00')
         # print(repos["updated_at"].tzinfo)
-        log.info("Sucess Getting Project {}\n".format(key))
+        print("Sucess Getting Project {}\n".format(key))
     # print(currentUserRepos)
-    return currentUserRepos, userProject
+    return currentUserRepos
 
 
-@shared_task
-def generateProjects(userModelString):
-    listRepos, modelUser = getUsers(userModelString)
+def generateProjects(user):
+    listRepos = getUserRepos(user)
+    modelUser = user
     currentUserProjects = modelUser.projectUserHandlier.all()
     for key, repo in listRepos.items():
+        print(repo['id'])
         project, created = currentUserProjects.get_or_create(
-            projectName=key,
+            id = repo['id'],
             defaults={
+                'project_name':repo['name'],
+                'id': repo['id'],
                 'created': repo['created_at'],
                 'last_updated': repo['updated_at'],
                 'description': repo['description'] if repo['description'] is not None else " ",
                 'project_link': repo['html_url'],
                 'projectHandlier': modelUser,
-                'project_image': None
+                'image': None,
+                'categories' : [],
+                'tags': [],
+                'show_case': True,
             }
         )
-        
+        ##check if the repos name has been updates lately and update it accordingly 
+
+        if (project.id == repo['id']) and (project.project_name == repo['name']):
+            project.project_name = repo['name']
+            project.save()
+        ##check if the repos has been updates lately and update it accordingly 
         if project.last_updated != repo['updated_at']:
             project.last_updated = repo['updated_at']
             project.description = repo['description'] if repo['description'] is not None else " "
             project.save()
+
+
+
+@shared_task
+def populateProjectsAllUser(data=None):
+    ##gets all users in the data base
+    all_users = User.objects.all()
+    for user in all_users:
+        if(user.git_hub_account):
+            generateProjects(user)
+    return "success"
