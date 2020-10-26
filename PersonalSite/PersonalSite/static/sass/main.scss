@@ -703,9 +703,10 @@ section.inner-section {
 --------------------------------------------------------------*/
 .services .icon-box {
   text-align: center;
-  padding: 3.8889rem 1.1111rem 4.4444rem 1.1111rem;
+  padding: 3.8889rem 1.1111rem 3.8889rem  1.1111rem;
   transition: all ease-in-out 0.3s;
   background: #fff;
+  width: 100%;
   box-shadow: 0rem 0.2778rem 5rem 0rem rgba(110, 123, 131, 0.05);
 }
 
@@ -754,6 +755,7 @@ section.inner-section {
   line-height: 1.3333rem;
   font-size: 0.7778rem;
   margin-bottom: 0;
+  overflow-wrap: break-word;
 }
 
 .services .icon-box:hover {

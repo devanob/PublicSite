@@ -12,8 +12,8 @@ class ProjectAdmin(ModelAdmin):
     menu_order = 200 
     add_to_settings_menu = False 
     exclude_from_explorer = False 
-    list_display = ("project_name",'tags')
-    list_filter = ("tags",)
+    list_display = ("project_name",'tags', 'categories')
+    list_filter = ("tags","categories")
     search_fields = ("project_name",)
 
 class ProjectCategoryAdmin(ModelAdmin):

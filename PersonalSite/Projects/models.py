@@ -19,6 +19,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail_svgmap.models import ImageMap
+from django.contrib.auth import get_user_model
 @register_snippet
 class Project(index.Indexed,ClusterableModel):
     
@@ -27,8 +28,8 @@ class Project(index.Indexed,ClusterableModel):
     slug = AutoSlugField(populate_from='project_name', blank=True,editable=True)
     project_name = models.CharField(max_length=255,verbose_name='name')
     tags = ClusterTaggableManager(through='Projects.ProjectTag', blank=True)
-    created = models.DateTimeField(auto_now_add=True,verbose_name='Date Created')
-    last_updated = models.DateTimeField(auto_now=True,verbose_name='Date Updated')
+    created = models.DateTimeField(verbose_name='Date Created')
+    last_updated = models.DateTimeField(verbose_name='Date Updated')
     description = models.TextField(max_length=1000)
     project_link = models.CharField(max_length=100)
     show_case= models.BooleanField(blank=False,default=True)

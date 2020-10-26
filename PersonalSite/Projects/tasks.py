@@ -43,6 +43,7 @@ def getUserRepos(userModel):
         currentUserRepos[oodict['name']] = oodict
     # print(currentUserRepos)
     for key, repos in currentUserRepos.items():
+        print(repos)
         repos["created_at"] = make_aware(datetime.strptime(
             repos["created_at"], "%Y-%m-%dT%H:%M:%SZ"))
         #repos["created_at"] = repos["created_at"].strftime('%Y-%m-%d %H:%M:%S+00:00')
@@ -95,6 +96,7 @@ def populateProjectsAllUser(data=None):
     ##gets all users in the data base
     all_users = User.objects.all()
     for user in all_users:
+        print(user)
         if(user.git_hub_account):
             generateProjects(user)
     return "success"
