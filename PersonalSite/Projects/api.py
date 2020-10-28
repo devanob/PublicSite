@@ -14,16 +14,16 @@ from django.contrib.auth import get_user_model
 #     projectHandlier = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name="projectUserHandlier",)
 class ProjectViewSet(viewsets.ViewSet,CustomPaginator):
     """
-    A simple ViewSet for listing or retrieving users.
+    A simple ViewSet for listing or retrieving projects.
     """
     def list(self, request, user=None):
         print(user)
         if (user == None):
-            queryset = Project.objects.get_queryset().order_by('id')
+            queryset = Project.objects.get_queryset().order_by('-last_updated')
         else:
              userModel = get_user_model()
              user = userModel.objects.get(username=user)
-             queryset = user.projectUserHandlier.all().order_by('-last_updated')
+             queryset = user.projectUserHandlier.filter(show_case=True).order_by('-last_updated')
         ###
         queryset_paginated= self.paginate_queryset(queryset,request)
         serializedProject = ProjectSerializer(queryset_paginated, many=True, context={'request': request})

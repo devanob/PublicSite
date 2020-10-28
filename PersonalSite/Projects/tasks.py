@@ -10,49 +10,70 @@ from datetime import datetime
 import os
 import logging
 from celery.utils.log import get_task_logger
+from Projects.models import ProjectCategory
 
 
 
 
+"""
+Insert Projects Into The Appplication VIA Git 
+"""
 
+def get_url_content_as_json(url,user):
+    try:
+        header = {
+             "User-Agent": "Mozilla/5.0"
+        }
+        if (user.git_api_key):
+            header['Authorization'] = 'token {}'.format(user.git_api_key)
+        print(header)
+        url_request = Request(url,
+                              headers=header)
+        contents = urlopen(url_request).read()
+    except Exception as e:
+        print(e)
+        print("Error Getting Content From Url")
+        raise Exception("Error Gettign Content From Url")
+   # // intially empty
+    jsonStruct  = json.loads(contents)
+    return jsonStruct
 
 
 def getUserRepos(userModel):
     gitUser = userModel.git_hub_account
     # Do nothing User Not Found Raise Error
     urlRestApiGit = "https://api.github.com/users/{}/repos".format(gitUser)
-    try:
-        url_request = Request(urlRestApiGit,
-                              headers={"User-Agent": "Mozilla/5.0"})
-        contents = urlopen(url_request).read()
-    except:
-        print(
-            "Git User Couldnt Not Be Found Or Connection Erorr:{}\n".format(gitUser))
-        raise Exception(
-            "Git User Couldnt Not Be Found Or Connection Erorr:{}\n".format(gitUser))
+    
     currentUserRepos = {}  # // intially empty
-    jsonContentRepos = json.loads(contents)
+    jsonContentRepos = get_url_content_as_json(urlRestApiGit,userModel)
+    ##
     for reposInfo in jsonContentRepos:
         if "personalxmb" in reposInfo['name'].lower():
             continue
         oodict = {key: value
                   for key, value in reposInfo.items()
-                  if key in ['id', 'description', 'html_url', 'created_at', 'updated_at', 'name']
+                  if key in ['id', 'description', 'html_url', 'created_at', 'updated_at',\
+                       'name', 'languages_url']
                   }
         
         currentUserRepos[oodict['name']] = oodict
-    # print(currentUserRepos)
+    #print(currentUserRepos)
+    ##fill in the languages for each repo
     for key, repos in currentUserRepos.items():
-        print(repos)
+        if 'languages_url' in repos:
+            langs_url = repos['languages_url']
+            lang_json =get_url_content_as_json(langs_url,userModel)
+            languages = [language for language in lang_json]
+            currentUserRepos[key]['languages'] = languages
+
+    #print(currentUserRepos)
+    for key, repos in currentUserRepos.items():
+        #print(repos)
         repos["created_at"] = make_aware(datetime.strptime(
             repos["created_at"], "%Y-%m-%dT%H:%M:%SZ"))
-        #repos["created_at"] = repos["created_at"].strftime('%Y-%m-%d %H:%M:%S+00:00')
         repos["updated_at"] = make_aware(datetime.strptime(
             repos["updated_at"], "%Y-%m-%dT%H:%M:%SZ"))
-        #repos["updated_at"] = repos["updated_at"].strftime('%Y-%m-%d %H:%M:%S+00:00')
-        # print(repos["updated_at"].tzinfo)
         print("Sucess Getting Project {}\n".format(key))
-    # print(currentUserRepos)
     return currentUserRepos
 
 
@@ -61,8 +82,8 @@ def generateProjects(user):
     modelUser = user
     currentUserProjects = modelUser.projectUserHandlier.all()
     for key, repo in listRepos.items():
-        print(repo['id'])
-        project, created = currentUserProjects.get_or_create(
+        #print(repo['id'])
+        project, created_project = currentUserProjects.get_or_create(
             id = repo['id'],
             defaults={
                 'project_name':repo['name'],
@@ -88,6 +109,27 @@ def generateProjects(user):
             project.last_updated = repo['updated_at']
             project.description = repo['description'] if repo['description'] is not None else " "
             project.save()
+        
+        ##add categories to project from git
+        for category in repo['languages']:
+            saved_project_category, created_category = ProjectCategory.objects.get_or_create(
+            name=category)
+            if created_category:
+                #print('created new category')
+                if created_project:
+                    project_catdgory = saved_project_category if saved_project_category else  created_category 
+                    created_project.categoies.add(project_catdgory )
+            else:
+                project_catdgory = saved_project_category if saved_project_category else  created_category 
+                current_project_catgories = project.categories.all()
+                if (project_catdgory not in current_project_catgories):
+                    project.categories.add(project_catdgory)
+            
+            
+
+        
+        
+        
 
 
 

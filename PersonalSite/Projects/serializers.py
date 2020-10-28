@@ -53,6 +53,7 @@ class ImageRenditionField(Field):
 
 class ProjectSerializer(serializers.ModelSerializer):
     image = ImageRenditionField("original")
+    snippet = serializers.Field(source='snippet_html')
     class Meta:
         model = Project
         fields = '__all__'

@@ -216,4 +216,4 @@ CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
 ##User Configuration
 WAGTAIL_USER_EDIT_FORM = 'Users.forms.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'Users.forms.CustomUserCreationForm'
-WAGTAIL_USER_CUSTOM_FIELDS = ['git_hub_account']
+WAGTAIL_USER_CUSTOM_FIELDS = ['git_hub_account','git_api_key']

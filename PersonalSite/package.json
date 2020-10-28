@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/danwild/react-webpack-django#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@wordpress/babel-preset-default": "*",
     "babel": "*",
     "babel-core": "*",

@@ -30,12 +30,12 @@ class Project(index.Indexed,ClusterableModel):
     tags = ClusterTaggableManager(through='Projects.ProjectTag', blank=True)
     created = models.DateTimeField(verbose_name='Date Created')
     last_updated = models.DateTimeField(verbose_name='Date Updated')
-    description = models.TextField(max_length=1000)
+    description = models.TextField(max_length=1000, blank=True, null=True)
     project_link = models.CharField(max_length=100)
     show_case= models.BooleanField(blank=False,default=True)
     projectHandlier = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name="projectUserHandlier",)
     image = models.ForeignKey('wagtailimages.Image', on_delete=models.SET_NULL,null=True, related_name='+', blank=True)
-    categories = ParentalManyToManyField('Projects.ProjectCategory',related_name='related_categories', blank=True)
+    categories = models.ManyToManyField('Projects.ProjectCategory',related_name='related_categories', blank=True)
     def __str__(self):
         return "{} created on {} last updated {} ".format(
             self.project_name,
@@ -61,6 +61,8 @@ class Project(index.Indexed,ClusterableModel):
         index.SearchField('project_name', partial_match=True),
         index.SearchField('description', partial_match=True),
     ]
+    def snippet_html(self):
+        return "this works"
     ##
     
 class ProjectPageIndex(Page):
@@ -80,10 +82,11 @@ class ProjectPageIndex(Page):
 @register_snippet
 class ProjectCategory(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from='name', blank=True)
+    slug = AutoSlugField(populate_from='name', blank=True, editable=True,unique=True)
     icon = models.ForeignKey(ImageMap, on_delete=models.SET_NULL,null=True, related_name='+', blank=True)
     panels = [
         FieldPanel('name'),
+        FieldPanel('slug'),
         SnippetChooserPanel('icon')
     ]
 

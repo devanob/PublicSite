@@ -2,6 +2,7 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtailcolumnblocks.blocks import ColumnsBlock
 from wagtail_svgmap.blocks import ImageMapBlock
+from Projects.blocks import ProjectListing
 
 class CustomImageBlock(blocks.StructBlock):
       image = ImageChooserBlock(required=True)
@@ -52,6 +53,7 @@ class GeneralContentBlocks(blocks.StreamBlock):
     chart = ChartBlock()
     map_block = MapBlock()
     image_slider = ImageSliderBlock()
+    project_listing = ProjectListing()
    
 class InnerColumnBlocks(blocks.StreamBlock):
     """ 

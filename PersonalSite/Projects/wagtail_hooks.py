@@ -12,7 +12,13 @@ class ProjectAdmin(ModelAdmin):
     menu_order = 200 
     add_to_settings_menu = False 
     exclude_from_explorer = False 
-    list_display = ("project_name",'tags', 'categories')
+    list_display = ("project_name", 'Categories', 'show_case')
+    def Categories(self, obj):
+        return ", ".join([cat.name for cat in obj.categories.all()])
+
+    def get_tags(self,obj):
+        return "\n".join(["hello" for tags in obj.tags])
+
     list_filter = ("tags","categories")
     search_fields = ("project_name",)
 
