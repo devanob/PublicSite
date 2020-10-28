@@ -9,4 +9,4 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     git_hub_account = models.TextField(blank=True, null=True)
-    git_api_key = models.TextField(blank=True, null=True)
+    git_api_key = models.TextField(blank=True, null=True) 
