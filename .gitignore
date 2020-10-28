@@ -17,6 +17,7 @@ tests/.coverage
 build/
 
 /node_modules
+/webpack_bundle
 /test/js
 /test/browsertest/js
 /test/fixtures/temp-*
@@ -32,3 +33,5 @@ build/
 .vscode
 .cache
 .eslintcache
+
+/
