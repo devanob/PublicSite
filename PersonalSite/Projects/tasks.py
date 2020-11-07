@@ -10,7 +10,7 @@ from datetime import datetime
 import os
 import logging
 from celery.utils.log import get_task_logger
-from Projects.models import ProjectCategory
+from Projects.models import ProjectCategory, ProjectCategoryOrderable
 
 
 
@@ -117,13 +117,20 @@ def generateProjects(user):
             if created_category:
                 #print('created new category')
                 if created_project:
-                    project_catdgory = saved_project_category if saved_project_category else  created_category 
-                    created_project.categoies.add(project_catdgory )
+                    project_category = saved_project_category if saved_project_category else  created_category
+                    ##
+                    
+                    #created_project.categoies.add(project_category )
+                    project_category_connect = ProjectCategoryOrderable(project=created_project, project_category=project_category)
+                    project_category_connect.save()
             else:
-                project_catdgory = saved_project_category if saved_project_category else  created_category 
-                current_project_catgories = project.categories.all()
-                if (project_catdgory not in current_project_catgories):
-                    project.categories.add(project_catdgory)
+                project_category = saved_project_category if saved_project_category else  created_category 
+                current_project_catgories = project._categories.all()
+                if (project_category not in current_project_catgories):
+                    ##
+                    ##project.categories.add(project_category)
+                    project_category_connect = ProjectCategoryOrderable(project=project, project_category=project_category)
+                    project_category_connect.save()
             
             
 

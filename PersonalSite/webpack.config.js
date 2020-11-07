@@ -37,7 +37,7 @@ let entries = glob.sync(`./*/static/*/*js/!(*${compiled_subtring}*).js`).reduce(
   //   return (directorysplit.indexOf(item) === pos) && !exception_list.includes(item);
   // })
   // directory_string = directorysplit.join('/');
-  let entry = file_name.replace(`${file_name}`, `compiled_${file_name}`);
+  let entry = file_name.replace(`${file_name}`, `${file_name}`);
   entry = entry.replace('.js', '');
   /**
    * Here we start building our object by placing the "entry" variable from
@@ -64,7 +64,7 @@ entries = glob.sync(`./*/static/*js/!(*${compiled_subtring}*).js`).reduce((acc, 
   //   return (directorysplit.indexOf(item) === pos) && !exception_list.includes(item);
   // })
   // directory_string = directorysplit.join('/');
-  let entry = file_name.replace(`${file_name}`, `compiled_${file_name}`);
+  let entry = file_name.replace(`${file_name}`, `${file_name}`);
   entry = entry.replace('.js', '');
   /**
    * Here we start building our object by placing the "entry" variable from
@@ -75,10 +75,31 @@ entries = glob.sync(`./*/static/*js/!(*${compiled_subtring}*).js`).reduce((acc, 
   return acc
 }, entries);
 
+console.log(entries)
+
+
+const rule_test =  
+  {
+      test: path.join(__dirname, '.'),
+      exclude: /(node_modules)/,
+      loader: 'babel-loader',
+      options: {
+          presets: ['@babel/preset-env',
+                    '@babel/react',{
+                    'plugins': ['@babel/plugin-proposal-class-properties']}]
+      }
+  };
+
 const jsRule = {
   test: /\.js$/,
   loader: 'babel-loader',
+  options: {
+    presets: ['@babel/preset-env',
+              '@babel/react',{
+              'plugins': ['@babel/plugin-proposal-class-properties']}]
+},
   include: path.resolve('./static/src/js'),
+  
   exclude: /node_modules/
 };
 
@@ -89,6 +110,7 @@ let plugins = [
 
 
   }),
+  
   new MiniCssExtractPlugin({
     filename: '[name].bundle.css'
   }),
@@ -132,12 +154,12 @@ const styleRule = {
   use: [
     MiniCssExtractPlugin.loader,
     { loader: 'css-loader', options: { sourceMap: true } },
-    { loader: 'postcss-loader', options: { sourceMap: true, plugins: () => 
-      [
-        autoprefixer({ browsers: ['last 2 versions'] }),
-        postcssPresetEnv({browsers:['last 2 versions']}),
+    { loader: 'postcss-loader', options: { sourceMap: true, postcssOptions:
+      {plugins:[
+        autoprefixer(),
+        postcssPresetEnv(),
       
-      ] } },
+      ] } }},
     { loader: 'resolve-url-loader', options: { sourceMap: true } },
     { loader: 'sass-loader', options: { sourceMap: true } }
   ],
@@ -157,9 +179,12 @@ module.exports = {
 
   module: {
     rules: [
-      jsRule, styleRule, fileLoaderRules,media_loader
+      
+      
+rule_test,
+      jsRule, styleRule, fileLoaderRules,media_loader,
     ],
   },
-
+  
   plugins: plugins
 }

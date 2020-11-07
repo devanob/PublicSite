@@ -11,6 +11,7 @@ from wagtail.search import index
 from wagtail.search.backends import get_search_backend
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from django import forms
+from wagtail_color_panel.fields import ColorField
 ##Project Model
 from taggit.models import TaggedItemBase, Tag as TaggitTag
 from modelcluster.models import ClusterableModel
@@ -20,6 +21,9 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail_svgmap.models import ImageMap
 from django.contrib.auth import get_user_model
+from wagtail_color_panel.edit_handlers import NativeColorPanel
+from wagtail.core.models import Orderable
+
 @register_snippet
 class Project(index.Indexed,ClusterableModel):
     
@@ -35,7 +39,7 @@ class Project(index.Indexed,ClusterableModel):
     show_case= models.BooleanField(blank=False,default=True)
     projectHandlier = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name="projectUserHandlier",)
     image = models.ForeignKey('wagtailimages.Image', on_delete=models.SET_NULL,null=True, related_name='+', blank=True)
-    categories = models.ManyToManyField('Projects.ProjectCategory',related_name='related_categories', blank=True)
+    _categories = models.ManyToManyField('Projects.ProjectCategory',through = 'ProjectCategoryOrderable', blank=True)
     def __str__(self):
         return "{} created on {} last updated {} ".format(
             self.project_name,
@@ -48,7 +52,12 @@ class Project(index.Indexed,ClusterableModel):
         FieldPanel('description'),
         FieldPanel('show_case'),
         ImageChooserPanel('image'),
-        FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
+         MultiFieldPanel(
+            [
+                InlinePanel("project_categories", label="Categories")
+            ],
+            heading="Categorie(s)"
+        ),
         FieldPanel("projectHandlier"),
         FieldPanel('tags'),
         FieldPanel('project_link'),
@@ -84,10 +93,12 @@ class ProjectCategory(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', blank=True, editable=True,unique=True)
     icon = models.ForeignKey(ImageMap, on_delete=models.SET_NULL,null=True, related_name='+', blank=True)
+    color = ColorField(default="coral", blank=True, null=True)
     panels = [
         FieldPanel('name'),
         FieldPanel('slug'),
-        SnippetChooserPanel('icon')
+        SnippetChooserPanel('icon'),
+        NativeColorPanel('color')
     ]
 
     def __str__(self):
@@ -108,3 +119,16 @@ class ProjectTag(TaggedItemBase):
         verbose_name = "Project Tag"
     
 
+class ProjectCategoryOrderable(Orderable):
+
+    """This allows us to select one or more categories from Snippets."""
+    project = ParentalKey("Projects.Project", related_name="project_categories")
+    project_category = models.ForeignKey(
+        "Projects.ProjectCategory",
+        on_delete=models.CASCADE,
+    )
+    
+    panels = [
+    	# Use a SnippetChooserPanel because Of Foreign Key 
+        SnippetChooserPanel("project_category"),
+    ]

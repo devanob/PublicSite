@@ -12,12 +12,12 @@
 
 {% block content %}
 
-{% get_files './about/compiled_about' 'js' as about_js %}
+{% get_files 'about' as about_js %}
 {% for js_file in about_js %}
   {% add_js '' js_file.url  %}
 {% endfor %}
 
-{% get_files './about/compiled_about' 'css' as about_css %}
+{% get_files 'about' 'css' as about_css %}
 {% for css_file in about_css %}
 {% add_css '' css_file.url  %}
 {% endfor %}

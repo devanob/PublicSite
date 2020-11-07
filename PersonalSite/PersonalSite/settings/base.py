@@ -63,11 +63,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wagtail_svgmap',
     'webpack_loader',
+    'django_extensions',
     'six',
     'wagtailuiplus',
     'MediaManager',
     'wagtailfontawesome',
     'wagtail_blocks',
+    'wagtail_color_panel'
 ]
 #
 COMPRESS_ENABLED = False

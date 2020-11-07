@@ -14,12 +14,12 @@ class ProjectAdmin(ModelAdmin):
     exclude_from_explorer = False 
     list_display = ("project_name", 'Categories', 'show_case')
     def Categories(self, obj):
-        return ", ".join([cat.name for cat in obj.categories.all()])
+        return ", ".join([cat.name for cat in obj._categories.all()])
 
     def get_tags(self,obj):
         return "\n".join(["hello" for tags in obj.tags])
 
-    list_filter = ("tags","categories")
+    list_filter = ("tags","_categories")
     search_fields = ("project_name",)
 
 class ProjectCategoryAdmin(ModelAdmin):

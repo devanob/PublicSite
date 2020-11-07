@@ -39,6 +39,7 @@ wagtail-blocks = "*"
 supervisor = "*"
 django-celery-results = "*"
 flower = "*"
+wagtail-color-panel = "*"
 
 [requires]
 python_version = "3.8"
