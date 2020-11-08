@@ -26,6 +26,9 @@
   background-color: var(--main-color);
   color: white;
 }
+.projects .projects .project {
+  margin-bottom: 2rem;
+}
 .projects .projects .icon-box {
   text-align: center;
   padding: 3.8889rem 1.1111rem 3.8889rem 1.1111rem;
@@ -50,11 +53,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  display: none;
+  display: flex;
+  opacity: 0;
   color: var(--main-color);
+  transition: all 1s;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
 }
 .projects .projects .icon-box .icon-wrapper .icon.active {
-  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 .projects .projects .icon-box .icon-wrapper .icon:hover .blob svg path {
   fill: var(--main-color);

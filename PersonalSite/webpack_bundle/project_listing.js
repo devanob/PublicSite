@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./Projects/static/js/ProjectInstance.js":
+/*!***********************************************!*\
+  !*** ./Projects/static/js/ProjectInstance.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _interopRequireDefault=__webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");var _interopRequireWildcard=__webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");Object.defineProperty(exports,"__esModule",{value:true});exports["default"]=void 0;var _classCallCheck2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));var _createClass2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));var _assertThisInitialized2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));var _inherits2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));var _possibleConstructorReturn2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));var _getPrototypeOf2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));var _defineProperty2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));var _react=_interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));var blobs2=_interopRequireWildcard(__webpack_require__(/*! blobs/v2 */ "./node_modules/blobs/v2/index.js"));var blobs2Animate=_interopRequireWildcard(__webpack_require__(/*! blobs/v2/animate */ "./node_modules/blobs/v2/animate/index.js"));var _jsxFileName="/home/devano/Documents/PersonalWebsite/PersonalSite/Projects/static/js/ProjectInstance.js";function _createSuper(Derived){var hasNativeReflectConstruct=_isNativeReflectConstruct();return function _createSuperInternal(){var Super=(0,_getPrototypeOf2["default"])(Derived),result;if(hasNativeReflectConstruct){var NewTarget=(0,_getPrototypeOf2["default"])(this).constructor;result=Reflect.construct(Super,arguments,NewTarget);}else{result=Super.apply(this,arguments);}return(0,_possibleConstructorReturn2["default"])(this,result);};}function _isNativeReflectConstruct(){if(typeof Reflect==="undefined"||!Reflect.construct)return false;if(Reflect.construct.sham)return false;if(typeof Proxy==="function")return true;try{Date.prototype.toString.call(Reflect.construct(Date,[],function(){}));return true;}catch(e){return false;}}var ProjectInstance=function(_Component){(0,_inherits2["default"])(ProjectInstance,_Component);var _super=_createSuper(ProjectInstance);function ProjectInstance(props){var _this;(0,_classCallCheck2["default"])(this,ProjectInstance);_this=_super.call(this,props);(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"state",{current_icon_index:0});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"setIconChange",function(){setInterval(function(){var number=_this.state.current_icon_index;_this.setState({current_icon_index:number+1});},3000);});_this.setIconChange();return _this;}(0,_createClass2["default"])(ProjectInstance,[{key:"render",value:function render(){var _this2=this;var _this$props$project=this.props.project,project=_this$props$project===void 0?null:_this$props$project;var _categories=project._categories;_categories=_categories.filter(function(cat){return cat.icon!==null;});current_index=0;if(_categories.length){current_index=this.state.current_icon_index%_categories.length;}console.log(_categories);console.log(current_index);return _react["default"].createElement("div",{className:"project col-lg-4 col-md-6 d-flex align-items-stretch","data-aos":"zoom-in","data-aos-delay":"100",__self:this,__source:{fileName:_jsxFileName,lineNumber:47,columnNumber:9}},_react["default"].createElement("div",{className:"icon-box",__self:this,__source:{fileName:_jsxFileName,lineNumber:48,columnNumber:13}},_react["default"].createElement("div",{className:"icon-wrapper",__self:this,__source:{fileName:_jsxFileName,lineNumber:49,columnNumber:14}},_categories.map(function(value,index){var addtional_classname=index===current_index?"active":"";var category=value.name;var svgString=blobs2.svg({seed:Math.random(),extraPoints:8,randomness:4,size:100},{fill:"white",stroke:"black",strokeWidth:1});return _react["default"].createElement("div",{className:"icon "+addtional_classname+" "+value.name,key:"icon_"+value.id,__self:_this2,__source:{fileName:_jsxFileName,lineNumber:67,columnNumber:13}},_react["default"].createElement("div",{className:"blob",dangerouslySetInnerHTML:{__html:svgString},__self:_this2,__source:{fileName:_jsxFileName,lineNumber:68,columnNumber:16}}),_react["default"].createElement("div",{className:'category-icon ',dangerouslySetInnerHTML:{__html:value.icon},__self:_this2,__source:{fileName:_jsxFileName,lineNumber:69,columnNumber:16}}));})),_react["default"].createElement("h4",{__self:this,__source:{fileName:_jsxFileName,lineNumber:74,columnNumber:9}},_react["default"].createElement("a",{href:project.project_link,__self:this,__source:{fileName:_jsxFileName,lineNumber:74,columnNumber:13}},project.project_name)),_react["default"].createElement("p",{__self:this,__source:{fileName:_jsxFileName,lineNumber:75,columnNumber:9}},project.description)));}}]);return ProjectInstance;}(_react.Component);var _default=ProjectInstance;exports["default"]=_default;
+
+/***/ }),
+
 /***/ "./Projects/static/js/project_listing.js":
 /*!***********************************************!*\
   !*** ./Projects/static/js/project_listing.js ***!
@@ -93,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _interopRequireDefault=__webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");var _interopRequireWildcard=__webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");var _classCallCheck2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));var _createClass2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));var _defineProperty2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));__webpack_require__(/*! ../sass/project_listing.scss */ "./Projects/static/sass/project_listing.scss");var blobs2=_interopRequireWildcard(__webpack_require__(/*! blobs/v2 */ "./node_modules/blobs/v2/index.js"));var blobs2Animate=_interopRequireWildcard(__webpack_require__(/*! blobs/v2/animate */ "./node_modules/blobs/v2/animate/index.js"));var _react=_interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));var _reactDom=_interopRequireDefault(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));var _server=_interopRequireDefault(__webpack_require__(/*! react-dom/server */ "./node_modules/react-dom/server.browser.js"));var _jsxFileName="/home/devano/Documents/PersonalWebsite/PersonalSite/Projects/static/js/project_listing.js";var axios=__webpack_require__(/*! axios */ "./node_modules/axios/index.js");var ProjectListing=function(){function ProjectListing(){var _this=this;(0,_classCallCheck2["default"])(this,ProjectListing);(0,_defineProperty2["default"])(this,"isBusy",false);(0,_defineProperty2["default"])(this,"next_page_link",null);(0,_defineProperty2["default"])(this,"project_container",null);(0,_defineProperty2["default"])(this,"ap_url",null);(0,_defineProperty2["default"])(this,"svgStringGenerator",null);(0,_defineProperty2["default"])(this,"setDomBusy",function(){});(0,_defineProperty2["default"])(this,"init",function(){_this.setUpContainersIntial();_this.setUpEventsInitial();_this.get_init_data();});(0,_defineProperty2["default"])(this,"handleData",function(response){_this.filteredProject(response.data);});(0,_defineProperty2["default"])(this,"filteredProject",function(data){_this.next_page_link=data.next;var inner_project=_this.project_container.querySelector(".row.projects");var projects=data.results;projects.forEach(function(project){project_html=_this.generateProjectHTML(project);inner_project.insertAdjacentHTML('beforeend',project_html);});});(0,_defineProperty2["default"])(this,"generateProjectHTML",function(element_json){var _categories=element_json._categories;_categories=_categories.filter(function(cat){return cat.icon!==null;});return _server["default"].renderToStaticMarkup(_react["default"].createElement("div",{className:"col-lg-4 col-md-6 d-flex align-items-stretch","data-aos":"zoom-in","data-aos-delay":"100",__self:_this,__source:{fileName:_jsxFileName,lineNumber:59,columnNumber:5}},_react["default"].createElement("div",{className:"icon-box",__self:_this,__source:{fileName:_jsxFileName,lineNumber:60,columnNumber:7}},_react["default"].createElement("div",{className:"icon-wrapper",__self:_this,__source:{fileName:_jsxFileName,lineNumber:61,columnNumber:7}},_categories.map(function(value,index){var addtional_classname=index===0?"active":"";var category=value.name;var svgString=blobs2.svg({seed:Math.random(),extraPoints:8,randomness:4,size:100},{fill:"white",stroke:"black",strokeWidth:1});return _react["default"].createElement("div",{className:"icon "+addtional_classname+" "+value.name,__self:_this,__source:{fileName:_jsxFileName,lineNumber:80,columnNumber:13}},_react["default"].createElement("div",{className:"blob",dangerouslySetInnerHTML:{__html:svgString},__self:_this,__source:{fileName:_jsxFileName,lineNumber:81,columnNumber:16}}),_react["default"].createElement("div",{className:'category-icon ',dangerouslySetInnerHTML:{__html:value.icon},__self:_this,__source:{fileName:_jsxFileName,lineNumber:82,columnNumber:16}}));})),_react["default"].createElement("h4",{__self:_this,__source:{fileName:_jsxFileName,lineNumber:87,columnNumber:9}},_react["default"].createElement("a",{href:element_json.project_link,__self:_this,__source:{fileName:_jsxFileName,lineNumber:87,columnNumber:13}},element_json.project_name)),_react["default"].createElement("p",{__self:_this,__source:{fileName:_jsxFileName,lineNumber:88,columnNumber:9}},element_json.description))));});(0,_defineProperty2["default"])(this,"get_init_data",function(){_this.get_data("GET",_this.ap_url,null,_this.handleData);});(0,_defineProperty2["default"])(this,"get_data",function(type,url){var data=arguments.length>2&&arguments[2]!==undefined?arguments[2]:null;var call_back=arguments.length>3&&arguments[3]!==undefined?arguments[3]:null;if(type.toLowerCase()==='get'){axios.get(url).then(call_back);}});(0,_defineProperty2["default"])(this,"setBusy",function(){var flag=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;_this.flag=flag;});(0,_defineProperty2["default"])(this,"setUpContainersIntial",function(){_this.project_container=document.querySelector(".projects.container");_this.ap_url=_this.project_container.getAttribute("data-url-project");});(0,_defineProperty2["default"])(this,"setUpEventsInitial",function(){var filter_buttons=document.querySelectorAll(".projects .filters .filter-button");filter_buttons.forEach(function(dom_element){dom_element.addEventListener("click",_this.filterButtonHanldierGenerator(dom_element));});});(0,_defineProperty2["default"])(this,"filterButtonHanldierGenerator",function(dom_object){return function(){console.log(dom_object);};});this.init();}(0,_createClass2["default"])(ProjectListing,[{key:"toggleBusy",value:function toggleBusy(){this.isBusy=this.isBusy?false:true;}}]);return ProjectListing;}();window.addEventListener('DOMContentLoaded',function(event){new ProjectListing();});
+var _interopRequireDefault=__webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");var _interopRequireWildcard=__webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");Object.defineProperty(exports,"__esModule",{value:true});exports["default"]=void 0;var _classCallCheck2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));var _createClass2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));var _assertThisInitialized2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));var _inherits2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));var _possibleConstructorReturn2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));var _getPrototypeOf2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));var _defineProperty2=_interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));__webpack_require__(/*! ../sass/project_listing.scss */ "./Projects/static/sass/project_listing.scss");var _react=_interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));var _server=_interopRequireDefault(__webpack_require__(/*! react-dom/server */ "./node_modules/react-dom/server.browser.js"));var _ProjectInstance=_interopRequireDefault(__webpack_require__(/*! ./ProjectInstance */ "./Projects/static/js/ProjectInstance.js"));var _reactDom=_interopRequireDefault(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));var _jsxFileName="/home/devano/Documents/PersonalWebsite/PersonalSite/Projects/static/js/project_listing.js",_this3=this;function _createSuper(Derived){var hasNativeReflectConstruct=_isNativeReflectConstruct();return function _createSuperInternal(){var Super=(0,_getPrototypeOf2["default"])(Derived),result;if(hasNativeReflectConstruct){var NewTarget=(0,_getPrototypeOf2["default"])(this).constructor;result=Reflect.construct(Super,arguments,NewTarget);}else{result=Super.apply(this,arguments);}return(0,_possibleConstructorReturn2["default"])(this,result);};}function _isNativeReflectConstruct(){if(typeof Reflect==="undefined"||!Reflect.construct)return false;if(Reflect.construct.sham)return false;if(typeof Proxy==="function")return true;try{Date.prototype.toString.call(Reflect.construct(Date,[],function(){}));return true;}catch(e){return false;}}var axios=__webpack_require__(/*! axios */ "./node_modules/axios/index.js");var ProjectListing=function(_Component){(0,_inherits2["default"])(ProjectListing,_Component);var _super=_createSuper(ProjectListing);function ProjectListing(props){var _this;(0,_classCallCheck2["default"])(this,ProjectListing);_this=_super.call(this,props);(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"isBusy",false);(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"next_page_link",null);(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"project_container",null);(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"ap_url",null);(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"svgStringGenerator",null);(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"state",{projects:[]});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"setDomBusy",function(){});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"init",function(){_this.isBusy=true;_this.setUpContainersIntial();_this.setUpEventsInitial();_this.get_init_data();});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"handleData",function(response){console.log(response);_this.setState({projects:response.data.results});});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"get_init_data",function(){_this.get_data("GET",_this.ap_url,null,_this.handleData);});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"get_data",function(type,url){var data=arguments.length>2&&arguments[2]!==undefined?arguments[2]:null;var call_back=arguments.length>3&&arguments[3]!==undefined?arguments[3]:null;if(type.toLowerCase()==='get'){axios.get(url).then(call_back);}});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"setBusy",function(){var flag=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;_this.flag=flag;});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"setUpContainersIntial",function(){_this.project_container=document.querySelector(".projects.container");_this.ap_url=_this.project_container.getAttribute("data-url-project");});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"setUpEventsInitial",function(){var filter_buttons=document.querySelectorAll(".projects .filters .filter-button");filter_buttons.forEach(function(dom_element){dom_element.addEventListener("click",_this.filterButtonHanldierGenerator(dom_element));});});(0,_defineProperty2["default"])((0,_assertThisInitialized2["default"])(_this),"filterButtonHanldierGenerator",function(dom_object){return function(){console.log(dom_object);};});_this.init();return _this;}(0,_createClass2["default"])(ProjectListing,[{key:"toggleBusy",value:function toggleBusy(){this.isBusy=this.isBusy?false:true;}},{key:"render",value:function render(){var _this2=this;if(this.isBusy===false){return _react["default"].createElement("div",{__self:this,__source:{fileName:_jsxFileName,lineNumber:44,columnNumber:15}}," Loading ");}else if(!this.state.projects.length){return _react["default"].createElement("div",{__self:this,__source:{fileName:_jsxFileName,lineNumber:47,columnNumber:15}}," No Projects  ");}else{return this.state.projects.map(function(project,value){return _react["default"].createElement(_ProjectInstance["default"],{key:"project_"+project.id,project:project,__self:_this2,__source:{fileName:_jsxFileName,lineNumber:51,columnNumber:16}});});}}}]);return ProjectListing;}(_react.Component);var _default=ProjectListing;exports["default"]=_default;window.addEventListener('DOMContentLoaded',function(event){var inner_project=document.querySelector(".projects.container .row.projects");_reactDom["default"].render(_react["default"].createElement(ProjectListing,{__self:_this3,__source:{fileName:_jsxFileName,lineNumber:98,columnNumber:5}}),inner_project);});
 
 /***/ }),
 
@@ -105,6 +116,25 @@ var _interopRequireDefault=__webpack_require__(/*! @babel/runtime/helpers/intero
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports,"__esModule",{value:true});
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
 
 /***/ }),
 
@@ -175,6 +205,52 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+module.exports = _inherits;
 
 /***/ }),
 
@@ -257,6 +333,49 @@ function _interopRequireWildcard(obj) {
 }
 
 module.exports = _interopRequireWildcard;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
 
 /***/ }),
 

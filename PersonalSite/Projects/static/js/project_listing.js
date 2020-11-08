@@ -1,21 +1,22 @@
 import "../sass/project_listing.scss";
 
-import * as blobs2 from "blobs/v2";
-import * as blobs2Animate from "blobs/v2/animate";
-const axios = require('axios');
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
 
-class ProjectListing{
+const axios = require('axios');
+import React, {Component} from "react";
+import ReactDOMServer from 'react-dom/server';
+import ProjectInstance from "./ProjectInstance";
+import ReactDOM from 'react-dom';
+class ProjectListing extends Component {
   isBusy =false;
   next_page_link = null;
   project_container = null;
   ap_url = null;
   svgStringGenerator = null;
-  constructor(){
+  state = { projects: [] }
+  constructor(props){
+    super(props);
     this.init();
-  }
+  } 
 
   //toggles the busy flag
   toggleBusy(){
@@ -27,70 +28,32 @@ class ProjectListing{
   }
   
   init = ()=>{
+    this.isBusy = true;
     this.setUpContainersIntial();
     this.setUpEventsInitial();
     this.get_init_data();
     
   }
   handleData = (response)=>{
-    this.filteredProject(response.data);
+    console.log(response);
+    this.setState({ projects: response.data.results });
   }
   
-  filteredProject =(data)=>{
-    this.next_page_link = data.next;
-    let inner_project = this.project_container.querySelector(".row.projects");
-    let projects = data.results;
-    projects.forEach(project=>{
-      project_html = this.generateProjectHTML(project);
-      inner_project.insertAdjacentHTML('beforeend', project_html);
+  render(){
+    if (this.isBusy === false  ){
+      return (<div> Loading </div>);
+    }
+    else if(!this.state.projects.length){
+      return (<div> No Projects  </div>)
+    }
+    else{
+      return (this.state.projects.map((project,value)=>{
+        return <ProjectInstance key={"project_" + project.id} project={project}/>
+      }));
+    }
       
-
-    })
-
-
   }
-  generateProjectHTML=(element_json)=>{
-    let _categories = element_json._categories;
-    _categories = _categories.filter((cat)=>{
-      //console.log(cat)
-      return cat.icon !== null;
-    })
-    return ReactDOMServer.renderToStaticMarkup(
-    <div className="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-      <div className="icon-box">
-      <div className="icon-wrapper">
-
-        {_categories.map((value,index)=>{
-          let addtional_classname=  index === 0 ?  "active" : "";
-          let category = value.name;
-          const svgString = blobs2.svg(
-            {
-                seed: Math.random(),
-                extraPoints: 8,
-                randomness: 4,
-                size: 100,
-            },
-            {
-                fill: "white", // 🚨 NOT SANITIZED
-                stroke: "black", // 🚨 NOT SANITIZED
-                strokeWidth: 1,
-            },
-        );
-          return(
-            <div className={"icon " + addtional_classname + " " + value.name } >
-               <div className='blob' dangerouslySetInnerHTML={{ __html:svgString }}></div>
-               <div className={'category-icon '} dangerouslySetInnerHTML={{ __html:value.icon }}></div>
-            </div>  
-          );
-        })}
-      </div>
-        <h4><a href={element_json.project_link}>{element_json.project_name}</a></h4>
-        <p>{element_json.description}</p>
-      </div>
-  </div>
-    
-    )
-  } 
+ 
   get_init_data = ()=>{
     this.get_data("GET",this.ap_url,null,this.handleData)
   }
@@ -127,9 +90,13 @@ class ProjectListing{
 
 }
 
+export default ProjectListing
 
 window.addEventListener('DOMContentLoaded', (event) => {
-  new ProjectListing();
+  let inner_project = document.querySelector(".projects.container .row.projects");
+  ReactDOM.render(
+    <ProjectListing/>,
+    inner_project);
 })
 
 
