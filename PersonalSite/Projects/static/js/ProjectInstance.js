@@ -3,24 +3,35 @@ import * as blobs2 from "blobs/v2";
 import * as blobs2Animate from "blobs/v2/animate";
 //Project Instance
 class ProjectInstance extends Component{
-    //
+    isHover= false;
+    time_out = null;
     state ={current_icon_index : 0};
     constructor(props){
         super(props);
         this.setIconChange();
         
     }
-
+    setHover = (flag)=>{
+        //console.log("YES");
+        this.isHover =flag;
+    }
     setIconChange = ()=>{
        
-        setInterval(()=>{
-           
-            //console.log(numm);
-            let number = this.state.current_icon_index;
-            //console.log(random_number);
-            this.setState({current_icon_index: number + 1 });
-        },3000);
+        this.time_out = setInterval(this.iconChanger,3000);
         
+    }
+
+    iconChanger =()=>{
+        if (!this.isHover){
+            let number = this.state.current_icon_index;
+        //console.log(random_number);
+            this.setState({current_icon_index: number + 1 });
+        }
+    }
+
+    componentWillUnmount(){
+        console.log("timeoutcleared");
+        clearTimeout(this.time_out);
     }
     
     //
@@ -40,13 +51,14 @@ class ProjectInstance extends Component{
         if (_categories.length){
             current_index = this.state.current_icon_index % _categories.length;
         }
-        console.log(_categories);
-        console.log(current_index);
+        //console.log(_categories);
+        //console.log(current_index);
         return (
 
         <div className="project col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div className="icon-box">
-             <div className="icon-wrapper">
+             <div className="icon-wrapper" onMouseEnter={()=>{this.setHover(true)}}
+                onMouseLeave = {()=>{this.setHover(false)}}>
                  {_categories.map((value,index)=>{
                     let addtional_classname=  index === current_index  ?  "active" : "";
                     let category = value.name;
@@ -55,7 +67,7 @@ class ProjectInstance extends Component{
                             seed: Math.random(),
                             extraPoints: 8,
                             randomness: 4,
-                            size: 100,
+                            size: 102,
                         },
                         {
                             fill: "white", // 🚨 NOT SANITIZED

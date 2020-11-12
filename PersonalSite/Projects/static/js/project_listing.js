@@ -55,17 +55,17 @@ class ProjectListing extends Component {
   }
  
   get_init_data = ()=>{
-    this.get_data("GET",this.ap_url,null,this.handleData)
+    this.get_data("GET",this.ap_url,null,null,this.handleData);
   }
-  get_data = (type,url,data=null,call_back=null)=>{
+  get_data = (type,url,data=null,get_params=null,call_back=null)=>{
     if (type.toLowerCase() === 'get'){
-      axios.get(url).then(call_back);
+      axios.get(url,{params:get_params}).then(call_back);
     }
   }
 
 
   setBusy = (flag = null) =>{
-    this.flag = flag;
+    this.flag = flag
     
   }
   setUpContainersIntial = ()=>{
@@ -84,7 +84,9 @@ class ProjectListing extends Component {
   //returns a handle than handles the clicking event for each filter button
   filterButtonHanldierGenerator =(dom_object)=>{
     return ()=>{
-      console.log(dom_object);
+      let category_id = dom_object.getAttribute('category-id');
+      const params = {'category': category_id};
+      this.get_data("GET",this.ap_url,null,params,this.handleData);
     }
   }
 

@@ -39,8 +39,8 @@
 }
 .projects .projects .icon-box .icon-wrapper {
   margin: 0 auto;
-  width: 5.5556rem;
-  height: 5.5556rem;
+  width: 5.6556rem;
+  height: 5.6556rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,7 +72,7 @@
   fill: var(--main-color);
 }
 .projects .projects .icon-box .icon-wrapper .icon:hover .category-icon * {
-  fill: white;
+  fill: white !important;
 }
 .projects .projects .icon-box .icon-wrapper .icon i {
   font-size: 2rem;
@@ -99,7 +99,11 @@
   width: 100%;
   position: relative;
   z-index: 2;
-  padding: 1.1rem;
+  padding: 1.2rem;
+}
+.projects .projects .icon-box .icon-wrapper .icon .category-icon svg {
+  width: 100%;
+  height: 100%;
 }
 .projects .projects .icon-box h4 {
   font-weight: 600;

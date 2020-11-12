@@ -17,14 +17,26 @@ class ProjectViewSet(viewsets.ViewSet,CustomPaginator):
     A simple ViewSet for listing or retrieving projects.
     """
     def list(self, request, user=None):
-        print(user)
+        category = request.query_params.get('category',"")
+        print("chicken\n")
+        print(category)
+        queryset= None
         if (user == None):
-            queryset = Project.objects.get_queryset().order_by('-last_updated')
+            queryset = Project.objects.get_queryset()
+
         else:
              userModel = get_user_model()
              user = userModel.objects.get(username=user)
-             queryset = user.projectUserHandlier.filter(show_case=True).order_by('-last_updated')
-        ###
+             queryset = user.projectUserHandlier
+        ##
+        if category.isnumeric():
+            cat = int(category)
+            queryset= queryset.filter(project_categories__project_category__in=[cat])
+        ##
+        queryset = queryset.filter(show_case=True)
+        #Ordeer by last updated 
+        queryset.order_by('-last_updated')
+        ##
         queryset_paginated= self.paginate_queryset(queryset,request)
         serializedProject = ProjectSerializer(queryset_paginated, many=True, context={'request': request})
         return self.get_paginated_response(serializedProject.data)
