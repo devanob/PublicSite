@@ -80,7 +80,7 @@
     "@babel/preset-react": "^7.12.1",
     "aos": "^2.3.4",
     "autoprefixer": "^9.8.6",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "blobs": "^2.1.0",
     "boxicons": "^2.0.7",
     "clip-path": "^1.2.0",
